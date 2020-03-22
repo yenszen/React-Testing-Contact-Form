@@ -1,16 +1,25 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import ContactForm from "./ContactForm";
 
 test("renders ContactForm", () => {
   render(<ContactForm />);
 });
 
-test("renders all 4 inputs", () => {
-  const container = render(<ContactForm />);
+test("renders all 4 input fields", () => {
+  // Arrange
+  const { getByText } = render(<ContactForm />);
 
-  container.getByText(/first name/i);
-  container.getByText(/last name/i);
-  container.getByText(/email/i);
-  container.getByText(/message/i);
-})
+  // Act
+  const firstName = getByText(/first name/i);
+  const lastName = getByText(/last name/i);
+  const email = getByText(/email/i);
+  const message = getByText(/message/i);
+
+  // Assert
+  expect(firstName).toBeInTheDocument();
+  expect(lastName).toBeInTheDocument();
+  expect(email).toBeInTheDocument();
+  expect(message).toBeInTheDocument();
+});
+
