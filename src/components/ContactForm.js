@@ -58,10 +58,16 @@ const ContactForm = () => {
         )}
         <input type="submit" />
       </form>
-      <button onClick={e => {
-        e.preventDefault();
-        setNumClicks(numClicks + 1);
-      }}>Click me: {numClicks}</button>
+      <button
+        onClick={e => {
+          e.preventDefault();
+          setNumClicks(numClicks + 1);
+        }}
+        data-testid="clickMeBtn"
+      >
+        Click me
+      </button>
+      <div data-testid="count" style={{color: "white"}}>Count: {numClicks}</div>
     </div>
   );
 };

@@ -23,3 +23,27 @@ test("renders all 4 input fields", () => {
   expect(message).toBeInTheDocument();
 });
 
+test("renders click me button", () => {
+  // Arrange
+  const { getByTestId } = render(<ContactForm />);
+
+  // Act
+  const clickMeBtn = getByTestId("clickMeBtn");
+
+  // Assert
+  expect(clickMeBtn).toBeInTheDocument();
+});
+
+test("clicking click-me button adds numClicks by 1", () => {
+  // Arrange
+  const { getByTestId } = render(<ContactForm />);
+
+  // Act
+  const clickMeBtn = getByTestId("clickMeBtn");
+  const clickMeCount = getByTestId("count");
+
+  // Assert
+  fireEvent.click(clickMeBtn);
+
+  expect(clickMeCount).toHaveTextContent("1");
+});
